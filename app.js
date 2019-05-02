@@ -1,13 +1,17 @@
-const bodyParser = require("body-parser"),
-      express    = require("express"),
-      mongoose   = require("mongoose"),
-      app        = express(),
-      port       = 3000;
+const methodOverride   = require("method-override"),
+      expressSanitizer = require("express-sanitizer"),
+      bodyParser       = require("body-parser"),
+      express          = require("express"),
+      mongoose         = require("mongoose"),
+      app              = express(),
+      port             = 3000;
 
-//config
+//Config
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
+app.use(methodOverride("_method"));
 
 //blogSchema
 let Schema = mongoose.Schema;
@@ -20,7 +24,7 @@ let blogSchema = new Schema({
 });
 let Blog = mongoose.model("Blog", blogSchema);
 
-//routes
+//Routes
 app.get("/", (req, res) => res.render("home"));
 
 //Homepage
