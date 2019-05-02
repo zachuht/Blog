@@ -4,15 +4,15 @@
     <form class="ui form" action="/" method="PUT">
       <div class="field">
         <label>Title</label>
-        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="blog[title]" placeholder="Title">
       </div>
       <div class="field">
         <label>Image</label>
-        <input type="text" name="image" placeholder="Image">
+        <input type="text" name="blog[image]" placeholder="Image">
       </div>
       <div class="field">
         <label>Entry</label>
-        <textarea placeholder="Entry"></textarea>
+        <textarea name="blog[body]"></textarea>
       </div>
       <button class="ui inverted violet button">Submit</button>
       <div id="right">
