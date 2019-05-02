@@ -1,7 +1,7 @@
-#main {
-  margin-top: 7.0em;
+#entry {
+  margin: 50px;
 }
 
-#main-form {
-  padding: 120px 150px;
+#right {
+  float: right;
 }
