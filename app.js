@@ -111,4 +111,4 @@ app.get("/contact", function(req, res){
 });
 
 //listen for server
-app.listen(port, () => console.log(`Blog app listening on port ${port}!`))
+app.listen(process.env.PORT || port, () => console.log(`Blog app listening on port ${port}!`))
