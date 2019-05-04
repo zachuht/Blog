@@ -8,7 +8,15 @@ const methodOverride   = require("./node_modules/method-override"),
       port             = 3000;
 
 //Config
-mongoose.connect('mongodb://localhost:27017/zuht_blog', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://dbUser:Password@cluster0-jcz20.mongodb.net/test?retryWrites=true', {
+	useNewUrlParser: true,
+	useCreateIndex: true
+}).then(() => {
+	console.log('Connected to DB!');
+}).catch(err => {
+	console.log('ERROR:', err.message);
+});
+//mongoose.connect('mongodb://localhost:27017/zuht_blog', { useNewUrlParser: true });
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
