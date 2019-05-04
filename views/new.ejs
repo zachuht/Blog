@@ -1,7 +1,7 @@
 <% include partials/header %>
-  <div id="entry" class="ui main text container segment">
-    <div class="ui huge header">New Entry</div>
-    <form class="ui form" action="/" method="PUT">
+  <div class="ui main text container segment">
+    <div class="ui huge header">New Blog</div>
+    <form class="ui form" action="/blogs" method="POST">
       <div class="field">
         <label>Title</label>
         <input type="text" name="blog[title]" placeholder="Title">
@@ -12,10 +12,10 @@
       </div>
       <div class="field">
         <label>Entry</label>
-        <textarea name="blog[body]"></textarea>
+        <textarea name="blog[body]" placeholder="Blog Content"></textarea>
       </div>
       <button class="ui inverted violet button">Submit</button>
-      <div id="right">
+      <div class="field" id="share">
         <button class="ui circular facebook icon button">
             <i class="facebook icon"></i>
           </button>
