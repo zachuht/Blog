@@ -1,8 +1,8 @@
-const methodOverride   = require("method-override"),
-      expressSanitizer = require("express-sanitizer"),
-      MongoClient      = require('mongodb').MongoClient,
-      bodyParser       = require("body-parser"),
-      express          = require("express"),
+const methodOverride   = require("./node_modules/method-override"),
+      expressSanitizer = require("./node_modules/express-sanitizer"),
+      MongoClient      = require('./node_modules/mongodb').MongoClient,
+      bodyParser       = require("./node_modules/body-parser"),
+      express          = require("./node_modules/express"),
       mongoose         = require("mongoose"),
       app              = express(),
       port             = 3000;
@@ -38,10 +38,10 @@ app.get("/blogs", function(req, res){
   });
 });
 
-//NEW ROUTE
+//NEW
 app.get("/blogs/new", (req, res) => res.render("new"));
 
-//CREATE ROUTE
+//CREATE
 app.post("/blogs", function(req, res){
   Blog.create(req.body.blog, function(err, newBlog){
     if(err){
@@ -52,7 +52,7 @@ app.post("/blogs", function(req, res){
   });
 });
 
-//SHOW ROUTE
+//SHOW
 app.get("/blogs/:id", function(req, res){
   Blog.findById(req.params.id, function(err, foundBlog){
     if(err){
@@ -63,7 +63,7 @@ app.get("/blogs/:id", function(req, res){
   });
 });
 
-//EDIT ROUTE
+//EDIT
 app.get("/blogs/:id/edit", function(req, res){
   Blog.findById(req.params.id, function(err, foundBlog){
     if(err){
@@ -74,7 +74,7 @@ app.get("/blogs/:id/edit", function(req, res){
   });
 });
 
-//UPDATE ROUTE
+//UPDATE
 app.put("/blogs/:id", function(req, res){
   req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
@@ -86,7 +86,7 @@ app.put("/blogs/:id", function(req, res){
   });
 });
 
-//DELETE ROUTE
+//DELETE
 app.delete("/blogs/:id", function(req, res){
   Blog.findByIdAndRemove(req.params.id, function(err){
     if(err){
@@ -101,24 +101,6 @@ app.delete("/blogs/:id", function(req, res){
 app.get("/contact", function(req, res){
   res.render("contact");
 });
-
-//Searchbar Function
-function searchFunction(){
-  var input, filter, ul, li, a, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  ul = document.getElementById("myUL");
-  li = ul.getElementsByTagName("li");
-  for(i = 0; i < li.length; i++){
-    a = li[i].getElementsByTagName("a")[0];
-    txtValue = a.textContent || a.innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      li[i].style.display = "";
-    } else {
-      li[i].style.display = "none";
-    }
-  }
-}
 
 //listen for server
 app.listen(port, () => console.log(`Blog app listening on port ${port}!`))
