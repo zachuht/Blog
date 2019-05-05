@@ -1,12 +1,16 @@
-const methodOverride   = require("./node_modules/method-override"),
-      expressSanitizer = require("./node_modules/express-sanitizer"),
-      MongoClient      = require('./node_modules/mongodb').MongoClient,
-      bodyParser       = require("./node_modules/body-parser"),
-      express          = require("./node_modules/express"),
-      mongoose         = require("mongoose"),
-      Blog             = require("./models/blog"),
-      app              = express(),
-      port             = 3000;
+const methodOverride        = require("./node_modules/method-override"),
+      expressSanitizer      = require("./node_modules/express-sanitizer"),
+      MongoClient           = require('./node_modules/mongodb').MongoClient,
+      bodyParser            = require("./node_modules/body-parser"),
+      passportLocalMongoose = require("passport-local-mongoose"),
+      express               = require("./node_modules/express"),
+      Blog                  = require("./models/blog"),
+      User                  = require("./models/user"),
+      mongoose              = require("mongoose"),
+      passport              = require("passport"),
+      LocalStrategy         = require("passport-local"),
+      app                   = express(),
+      port                  = 3000;
 
 //CHOOSE DATABASE
 mongoose.connect('mongodb+srv://dbUser:Password@cluster0-jcz20.mongodb.net/test?retryWrites=true', {
@@ -31,6 +35,63 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
+app.use(require("express-session")({
+  secret: "This is my secret phrase",
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
+});
+
+//AUTH ROUTES
+app.get("/register", function(req, res){
+  res.render("register");
+});
+
+app.post("/register", function(req, res){
+    req.body.username;
+    req.body.password;
+    User.register(new User({username: req.body.username}), req.body.password, function(err,user){
+        if(err){
+            console.log(err);
+            return res.render("register");
+        }
+        passport.authenticate("local")(req, res, function(){
+            res.redirect("/blogs");
+        });
+    });
+});
+
+app.get("/login", function(req, res){
+  res.render("login");
+});
+
+app.post("/login", passport.authenticate("local", {
+  successRedirect: "/blogs",
+  failureRedirect: "/login"
+}), function(req, res){
+});
+
+app.get("/logout", function(req, res){
+  req.logout();
+  res.redirect("/");
+});
+
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect("/login");
+}
 
 //INDEX
 app.get("/", (req, res) => res.redirect("/blogs"));
@@ -46,7 +107,7 @@ app.get("/blogs", function(req, res){
 });
 
 //NEW
-app.get("/blogs/new", (req, res) => res.render("new"));
+app.get("/blogs/new", isLoggedIn, (req, res) => res.render("new"));
 
 //CREATE
 app.post("/blogs", function(req, res){
