@@ -3,4 +3,6 @@
 <p>-- First personal project using Express, Node, MongoDB, and SemanticUI for styling.</p>
 <p>-- Will update with new blog posts as often as possible in an effort to document my journey as a self taught developer.</p>
 
-<a href="https://zuht-blog.herokuapp.com/">--View blog here!!</a>
+<a href="https://zuht-blog.herokuapp.com/"> --View blog here!!</a>
+
+<p>-- Looking for any feedback whatsoever!</p>
