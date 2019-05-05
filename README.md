@@ -5,4 +5,3 @@
 
 <a href="https://zuht-blog.herokuapp.com/">-- View blog here!!</a>
 
-<p>-- Looking for any feedback whatsoever!</p>
