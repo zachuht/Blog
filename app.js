@@ -4,38 +4,37 @@ const methodOverride   = require("./node_modules/method-override"),
       bodyParser       = require("./node_modules/body-parser"),
       express          = require("./node_modules/express"),
       mongoose         = require("mongoose"),
+      Blog             = require("./models/blog"),
       app              = express(),
       port             = 3000;
 
-//Config
-mongoose.connect('mongodb+srv://dbUser:Password@cluster0-jcz20.mongodb.net/test?retryWrites=true', {
-	useNewUrlParser: true,
-	useCreateIndex: true
+//CHOOSE DATABASE
+// mongoose.connect('mongodb+srv://dbUser:Password@cluster0-jcz20.mongodb.net/test?retryWrites=true', {
+// 	useNewUrlParser: true,
+// 	useCreateIndex: true
+// }).then(() => {
+// 	console.log('Connected to DB!');
+// }).catch(err => {
+// 	console.log('ERROR:', err.message);
+// });
+mongoose.connect('mongodb://localhost:27017/zuht_blog', { 
+  useNewUrlParser: true
 }).then(() => {
-	console.log('Connected to DB!');
+  console.log('Connected to Local DB')
 }).catch(err => {
-	console.log('ERROR:', err.message);
+  console.log('ERROR', err.message);
 });
-//mongoose.connect('mongodb://localhost:27017/zuht_blog', { useNewUrlParser: true });
+
+//CONFIG
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 
-//Model Config
-var blogSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  body: String,
-  created: { type: Date, default: Date.now },
-});
-var Blog = mongoose.model("Blog", blogSchema);
-
-//Routes
+//INDEX
 app.get("/", (req, res) => res.redirect("/blogs"));
 
-//INDEX
 app.get("/blogs", function(req, res){
   Blog.find({}, function(err, blogs){
     if(err){
@@ -105,7 +104,7 @@ app.delete("/blogs/:id", function(req, res){
   });
 });
 
-//Contact Page
+//CONTACT
 app.get("/contact", function(req, res){
   res.render("contact");
 });
