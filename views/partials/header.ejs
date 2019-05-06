@@ -12,22 +12,17 @@
 	<link rel="shortcut icon" href="Blog/public/myicon.ico?r=32383" type="image/x-icon" />
 </head>
 <body>
-	<div class="ui inverted attached stackable menu">
+	<div id="darkmode" class="ui inverted attached stackable menu">
 		<div class="ui container">
 			<a href="/" class="item">
 				<i class="code icon"></i> zuht's Blog
 			</a>
-			<a class="item" href="/blogs/new">
+			<a href="/blogs/new" class="item">
 				<i class="grid layout icon"></i> New Post
 			</a>
-			<div class="ui simple dropdown item">
-				<i class="address card outline icon"></i>Contact
-				<i class="dropdown icon" href="/contact"></i>
-				<div class="menu">
-					<a href="https://github.com/zachuht" target="_blank" class="item"><i class="github icon"></i> Github</a>
-					<a href="/contact" class="item"><i class="mobile alternate icon"></i> Contact Info</a>
-				</div>
-			</div>
+			<a href="/contact" class="item">
+				<i class="address card outline icon"></i> Contact
+			</a>
 			<div class="right menu">
 				<% if(!currentUser){ %>
 					<a class="right item" href="/register">
@@ -37,7 +32,7 @@
 						<i class="user outline icon"></i> Login
 					</a>
 					<% } else { %>
-						<a class="right item" href="#"><i class="user icon"></i><%= currentUser.username %></a>
+						<a class="right item" href="/contact"><i class="user icon"></i><%= currentUser.username %></a>
 						<a class="right item" href="/logout">
 							<i class="user outline icon"></i> Logout
 						</a>
