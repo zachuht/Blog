@@ -52,6 +52,13 @@ app.use(function(req, res, next){
   next();
 });
 
+function isLoggedIn(req, res, next){
+  if(req.isAuthenticated()){
+    return next();
+  }
+  res.redirect("/login");
+}
+
 //AUTH ROUTES
 app.get("/register", function(req, res){
   res.render("register");
@@ -85,13 +92,6 @@ app.get("/logout", function(req, res){
   req.logout();
   res.redirect("/");
 });
-
-function isLoggedIn(req, res, next){
-  if(req.isAuthenticated()){
-    return next();
-  }
-  res.redirect("/login");
-}
 
 //INDEX
 app.get("/", (req, res) => res.redirect("/blogs"));
