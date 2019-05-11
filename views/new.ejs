@@ -1,20 +1,20 @@
 <% include partials/header %>
   <div class="ui main text container segment">
-    <div class="ui huge header">New Blog</div>
+    <div id="codeFont" class="ui huge header">(new blog);</div>
     <form class="ui form" action="/blogs" method="POST">
       <div class="field">
-        <label>Title</label>
+        <label id="codeFont">title</label>
         <input type="text" name="blog[title]" placeholder="Title">
       </div>
       <div class="field">
-        <label>Image</label>
+        <label id="codeFont">image</label>
         <input type="text" name="blog[image]" placeholder="Image">
       </div>
       <div class="field">
-        <label>Entry</label>
+        <label id="codeFont">entry</label>
         <textarea name="blog[body]" placeholder="Blog Content"></textarea>
       </div>
-      <button class="ui inverted violet button">Submit</button>
+      <button id="codeFont" class="ui inverted violet button">Submit</button>
     </form>
   </div>
 <% include partials/footer %>

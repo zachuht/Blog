@@ -1,16 +1,16 @@
 <% include partials/header %>
 <div class="ui main text container">
-  <div class="ui huge header">Login</div>
+  <div id="codeFont" class="ui huge header">(login);</div>
       <form class="ui big form" action="/login" method="POST">
         <div class="seven wide field required">
-          <label>Username</label>
-          <input type="text" name="username" placeholder="Username">
+          <label id="codeFont">username</label>
+          <input type="text" name="username" placeholder="username">
         </div>
         <div class="seven wide field required">
-          <label>Password</label>
-          <input type="password" name="password" placeholder="Password">
+          <label id="codeFont">password</label>
+          <input type="password" name="password" placeholder="password">
         </div>
-        <button class="ui positive basic button">Login</button>
+        <button id="codeFont" class="ui positive basic button">login</button>
       </form>
   </div>
 </div>

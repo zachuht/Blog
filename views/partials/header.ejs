@@ -13,28 +13,28 @@
 </head>
 <body>
 	<div id="darkmode" class="ui inverted attached stackable menu">
-		<div class="ui container">
+		<div id="codeFont" class="ui container">
 			<a href="/" class="item">
-				<i class="code icon"></i> zuht's Blog
+				<!-- <i class="code icon"></i> -->{ zachary uht } 
 			</a>
 			<a href="/blogs/new" class="item">
-				<i class="grid layout icon"></i> New Post
+				<i class="pencil icon"></i> new
 			</a>
 			<a href="/contact" class="item">
-				<i class="address card outline icon"></i> Contact
+				<i class="address card outline icon"></i> contact
 			</a>
 			<div class="right menu">
 				<% if(!currentUser){ %>
-					<a class="right item" href="/register">
-						<i class="user plus icon"></i> Register
-					</a>
+					<!-- <a class="right item" href="/register">
+						<i class="user plus icon"></i> register
+					</a> -->
 					<a class="right item" href="/login">
-						<i class="user outline icon"></i> Login
+						<i class="user outline icon"></i> login
 					</a>
 					<% } else { %>
-						<a class="right item" href="/contact"><i class="user icon"></i><%= currentUser.username %></a>
+						<a class="right item" href="/contact"><i class="user icon"></i><%= currentUser.username.toLowerCase() %></a>
 						<a class="right item" href="/logout">
-							<i class="user outline icon"></i> Logout
+							<i class="user outline icon"></i> logout
 						</a>
 					<% } %> 
 			</div>

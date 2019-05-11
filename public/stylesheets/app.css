@@ -4,14 +4,46 @@ body {
 
 #darkmode {
   background-color: rgb(40, 44, 47);
+  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
-i.icon {
+#header {
+  margin: 20px;
+}
+
+#delete {
+  display: inline;
+}
+
+#contactName {
+  font-size: 2.5em;
+  font-family: ANDALE MONO;
+}
+
+#contactIcon {
+  font-size: 2em;
+}
+
+#codeFont {
+  font-family: ANDALE MONO;
+}
+
+/* #footer {
+  margin-top: 75px;
+  background-color: rgb(40, 44, 47);
+  text-align: right;
+  font-family: ANDALE MONO;
+  text-decoration: none;
+  color: #f0f0f0;
+  width: 100%;
+} */
+
+p ~ i {
   font-size: 1.5em;
 }
 
-.container.main {
-  margin-top: 50px;
+i.icon {
+  font-size: 1.2em;
 }
 
 div.ui.three.column {
@@ -19,16 +51,8 @@ div.ui.three.column {
   text-align: center;
 }
 
-#delete {
-  display: inline;
-}
-
-#share {
-  float: right;
-}
-
-#contactName {
-  font-size: 2em;
+.container.main {
+  margin-top: 50px;
 }
 
 hr {
