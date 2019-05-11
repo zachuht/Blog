@@ -5,5 +5,5 @@
 
 <a href="https://zuht-blog.herokuapp.com/">-- View blog here!!</a>
 
-<p>-- v1.0 - Basic Launch</p>
-<p>-- v1.1 - Improved UI</p>
+<p>-- v1.0 --> Basic Launch</p>
+<p>-- v1.1 --> Improved UI</p>
